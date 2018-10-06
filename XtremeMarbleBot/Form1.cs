@@ -11,6 +11,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace XtremeMarbleBot
 {
     public partial class Form1 : Form
@@ -31,48 +33,53 @@ namespace XtremeMarbleBot
             string authToken = txtAuthToken.Text.ToLower();            
             int numberOfBots = (int)txtNumBots.Value;
 
-            DateTime stopTime = DateTime.Now.AddSeconds(5);
+            DateTime stopTime = DateTime.Now.AddMinutes(30);
 
             while (true)
             {
                 if (stopTime < DateTime.Now)
                 {
+                    stopTime = DateTime.Now.AddMinutes(30);
                     List<string> topChannels = new List<string>();
-                    stopTime = DateTime.Now.AddSeconds(30);
-                    //string URL = "https://api.twitch.tv/helix/streams?gameid=*marbleid*&first=" + numberOfBots;
+                    
+                    //509511 - marbles twitch id
+                    string URL = "https://api.twitch.tv/helix/streams?game_id=509511&first=" + numberOfBots;
 
-                    //var response = await client.GetAsync(URL);
+                    client.DefaultRequestHeaders.Add("Client-ID", "3mx4acqmwya0a96b67encfry7hqwbr");
 
-                    //response.Headers.Add("Authorization", "OAuth " + authToken);
+                    //send request for top marble streams, serialize as objects
+                    var response = await client.GetAsync(URL);
+                    string json = response.Content.ReadAsStringAsync().Result;
+                    GetStreamsRequest streams = JsonConvert.DeserializeObject<GetStreamsRequest>(json);
 
-                    ////parse channel id
-                    //response.ToString();
-
-                    string json = "";
-
-
-                    RootObject data = JsonConvert.DeserializeObject<RootObject>(json);
-
-                    for (int i = 0; i < data.data.Count; i++)
+                    //get display names for top streams
+                    for (int i = 0; i < streams.data.Count; i++)
                     {
-                        //URL = "https://api.twitch.tv/helix/users?id=" + data.data[i].id;
-                        //response = await client.GetAsync(URL);
+                        URL = "https://api.twitch.tv/helix/users?id=" + streams.data[i].user_id;
+                        response = await client.GetAsync(URL);
+                        json = response.Content.ReadAsStringAsync().Result;
 
-                        RootObject2 data2 = JsonConvert.DeserializeObject<RootObject2>(json);
-                        for (int j = 0; j < data2.data.Count; j++)
+                        GetUserInfoRequest userInfo = JsonConvert.DeserializeObject<GetUserInfoRequest>(json);
+                        for (int j = 0; j < userInfo.data.Count; j++)
                         {
-                            topChannels.Add(data2.data[j].display_name);
+                            topChannels.Add(userInfo.data[j].display_name);
                         }
                     }
 
-                    foreach (var item in topChannels)
+                    //start bot for each of these streams
+                    foreach (var channel in topChannels)
                     {
-                        BotTest b = new BotTest(botName, item, authToken, stopTime);
+                        Bot b = new Bot(botName, channel, authToken, stopTime);
                         Thread thread = new Thread(new ThreadStart(b.Start));
                         thread.Start();
                     }
-                }
 
+                    progress = new Progress<string>(s => lblMessage.Text = s);
+                    await Task.Factory.StartNew(() => UiThread.WriteToInfoLabel(progress, "Bots started."));
+
+                    Thread.Sleep(600000);
+                }
+                Thread.Sleep(60000);
             }
             
         }
@@ -81,17 +88,6 @@ namespace XtremeMarbleBot
     class UiThread
     {
         public static void WriteToInfoLabel(IProgress<string> progress, string text)
-        {
-            //why is this necessary
-            //without the loop it doesnt run async
-            for (var i = 0; i < 5; i++)
-            {
-                Task.Delay(10).Wait();
-                progress.Report(text);
-            }
-        }
-
-        public static void ChangeStartButton(IProgress<string> progress, string text)
         {
             //why is this necessary
             //without the loop it doesnt run async

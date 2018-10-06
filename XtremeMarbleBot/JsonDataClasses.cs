@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace XtremeMarbleBot
 {
 
-    public class Datum
+    public class StreamInfo
     {
         public string id { get; set; }
         public string user_id { get; set; }
@@ -26,15 +26,13 @@ namespace XtremeMarbleBot
         public string cursor { get; set; }
     }
 
-    public class RootObject
+    public class GetStreamsRequest
     {
-        public List<Datum> data { get; set; }
+        public List<StreamInfo> data { get; set; }
         public Pagination pagination { get; set; }
     }
 
-
-
-    public class Datum2
+    public class UserInfo
     {
         public string id { get; set; }
         public string login { get; set; }
@@ -48,9 +46,9 @@ namespace XtremeMarbleBot
         public string email { get; set; }
     }
 
-    public class RootObject2
+    public class GetUserInfoRequest
     {
-        public List<Datum2> data { get; set; }
+        public List<UserInfo> data { get; set; }
     }
 
 }

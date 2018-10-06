@@ -23,7 +23,7 @@ namespace XtremeMarbleBot
 
         public void Start()
         {
-            DateTime lastPostTime = DateTime.Now;
+            DateTime lastPostTime = DateTime.Now.AddMinutes(-5);
             List<string> pastmessages = new List<string>();
 
             // Initialize and connect to Twitch chat
@@ -40,7 +40,7 @@ namespace XtremeMarbleBot
             {
                 //Read any message from the chat room
                 string message = irc.ReadMessage();
-                Console.WriteLine(message);
+                //Console.WriteLine(message);
 
                 if (message.Contains("PRIVMSG"))
                 {
@@ -59,7 +59,7 @@ namespace XtremeMarbleBot
                         pastmessages.RemoveAt(0);
                     }
 
-                    //check last 3 messages have been !play
+                    //check all last 3 messages have been !play
                     if (!pastmessages.Any(m => !m.StartsWith("!play")) && lastPostTime.AddMinutes(2) < DateTime.Now)
                     {
                         //only post once every 2 minutes
