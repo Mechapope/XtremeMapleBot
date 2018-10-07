@@ -45,7 +45,6 @@ namespace XtremeMarbleBot
                 if (message.Contains("PRIVMSG"))
                 {
                     // Message Format: ":[user]![user]@[user].tmi.twitch.tv PRIVMSG #[channel] :[message]"
-
                     //Parse username and message
                     int intIndexParseSign = message.IndexOf('!');
                     string userName = message.Substring(1, intIndexParseSign - 1);

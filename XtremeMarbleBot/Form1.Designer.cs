@@ -42,7 +42,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(179, 15);
+            this.label1.Location = new System.Drawing.Point(36, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 0;
@@ -51,7 +51,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(166, 41);
+            this.label2.Location = new System.Drawing.Point(23, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 1;
@@ -60,7 +60,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(154, 66);
+            this.label3.Location = new System.Drawing.Point(11, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 2;
@@ -68,28 +68,28 @@
             // 
             // txtAuthToken
             // 
-            this.txtAuthToken.Location = new System.Drawing.Point(242, 38);
+            this.txtAuthToken.Location = new System.Drawing.Point(99, 38);
             this.txtAuthToken.Name = "txtAuthToken";
-            this.txtAuthToken.Size = new System.Drawing.Size(100, 20);
+            this.txtAuthToken.Size = new System.Drawing.Size(238, 20);
             this.txtAuthToken.TabIndex = 4;
             // 
             // txtBotName
             // 
-            this.txtBotName.Location = new System.Drawing.Point(242, 12);
+            this.txtBotName.Location = new System.Drawing.Point(99, 12);
             this.txtBotName.Name = "txtBotName";
-            this.txtBotName.Size = new System.Drawing.Size(100, 20);
+            this.txtBotName.Size = new System.Drawing.Size(238, 20);
             this.txtBotName.TabIndex = 5;
             // 
             // txtNumBots
             // 
-            this.txtNumBots.Location = new System.Drawing.Point(242, 64);
+            this.txtNumBots.Location = new System.Drawing.Point(99, 64);
             this.txtNumBots.Name = "txtNumBots";
-            this.txtNumBots.Size = new System.Drawing.Size(100, 20);
+            this.txtNumBots.Size = new System.Drawing.Size(238, 20);
             this.txtNumBots.TabIndex = 6;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(204, 107);
+            this.btnStart.Location = new System.Drawing.Point(137, 99);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 7;
@@ -99,18 +99,18 @@
             // 
             // lblMessage
             // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(222, 155);
+            this.lblMessage.Location = new System.Drawing.Point(14, 135);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(35, 13);
+            this.lblMessage.Size = new System.Drawing.Size(323, 46);
             this.lblMessage.TabIndex = 8;
             this.lblMessage.Text = "label4";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 256);
+            this.ClientSize = new System.Drawing.Size(349, 190);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.txtNumBots);
