@@ -120,7 +120,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Marble Bot";
             ((System.ComponentModel.ISupportInitialize)(this.txtNumBots)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

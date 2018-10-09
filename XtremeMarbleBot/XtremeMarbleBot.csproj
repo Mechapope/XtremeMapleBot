@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot.cs" />
-    <Compile Include="BotTest.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
